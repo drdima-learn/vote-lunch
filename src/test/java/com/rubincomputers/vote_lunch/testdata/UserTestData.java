@@ -1,5 +1,6 @@
-package com.rubincomputers.vote_lunch;
+package com.rubincomputers.vote_lunch.testdata;
 
+import com.rubincomputers.vote_lunch.MatcherFactory;
 import com.rubincomputers.vote_lunch.model.Role;
 import com.rubincomputers.vote_lunch.model.User;
 
