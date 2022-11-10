@@ -10,14 +10,18 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "dish")
 public class Dish extends AbstractNamedEntity{
+    //id
     //name
 
     private BigDecimal price;
+
+    private LocalDate created;
+
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    private LocalDate date;
+
 
     public Restaurant getRestaurant() {
         return restaurant;

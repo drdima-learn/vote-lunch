@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface BaseRepository<ENTITY> {
     // null if not found, when updated
-    ENTITY save(ENTITY user);
+    ENTITY save(ENTITY entity);
 
 
     // false if not found
