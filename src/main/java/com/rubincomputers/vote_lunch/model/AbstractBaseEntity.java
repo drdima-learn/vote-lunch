@@ -1,5 +1,7 @@
 package com.rubincomputers.vote_lunch.model;
 
+import org.springframework.util.Assert;
+
 import javax.persistence.*;
 
 @MappedSuperclass
@@ -17,7 +19,16 @@ public abstract class AbstractBaseEntity {
     protected AbstractBaseEntity() {
     }
 
+    protected AbstractBaseEntity(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
+        return id;
+    }
+
+    public int id() {
+        Assert.notNull(id, "Entity must have id");
         return id;
     }
 

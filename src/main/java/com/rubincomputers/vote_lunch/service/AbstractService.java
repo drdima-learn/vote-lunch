@@ -1,16 +1,42 @@
 package com.rubincomputers.vote_lunch.service;
 
-import com.rubincomputers.vote_lunch.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.rubincomputers.vote_lunch.model.AbstractBaseEntity;
+import com.rubincomputers.vote_lunch.repository.BaseRepository;
 import org.springframework.util.Assert;
 
-public abstract class AbstractService<T> {
+import java.util.List;
 
-    protected T repository;
+import static com.rubincomputers.vote_lunch.util.ValidationUtil.checkNotFoundWithId;
 
-    public User create(User user) {
+public abstract class AbstractService<ENTITY_REPOSITORY extends BaseRepository<ENTITY>, ENTITY extends AbstractBaseEntity> {
+
+
+    protected ENTITY_REPOSITORY repository;
+
+    public AbstractService(ENTITY_REPOSITORY repository) {
+        this.repository = repository;
+    }
+
+    public ENTITY create(ENTITY user) {
         Assert.notNull(user, "user must not be null");
         return repository.save(user);
+    }
+
+    public void update(ENTITY user) {
+        Assert.notNull(user, "user must not be null");
+        checkNotFoundWithId(repository.save(user), user.id());
+    }
+
+    public void delete(int id) {
+        checkNotFoundWithId(repository.delete(id), id);
+    }
+
+    public ENTITY get(int id) {
+        return checkNotFoundWithId(repository.get(id), id);
+    }
+
+    public List<ENTITY> getAll() {
+        return repository.getAll();
     }
 
 }

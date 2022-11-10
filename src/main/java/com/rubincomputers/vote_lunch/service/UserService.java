@@ -12,36 +12,39 @@ import static com.rubincomputers.vote_lunch.util.ValidationUtil.checkNotFound;
 import static com.rubincomputers.vote_lunch.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
-public class UserService extends AbstractService<UserRepository>{
+public class UserService extends AbstractService<UserRepository, User>{
 
-    @Autowired
-    private UserRepository repository;
+//    @Autowired
+//    private UserRepository repository;
+//
+//
+//
+//    public User create(User user) {
+//        Assert.notNull(user, "user must not be null");
+//        return repository.save(user);
+//    }
 
 
-
-    public User create(User user) {
-        Assert.notNull(user, "user must not be null");
-        return repository.save(user);
+    public UserService(UserRepository repository) {
+        super(repository);
     }
 
+//    public void update(User user) {
+//        Assert.notNull(user, "user must not be null");
+//        checkNotFoundWithId(repository.save(user), user.id());
+//    }
 
+//    public void delete(int id) {
+//        checkNotFoundWithId(repository.delete(id), id);
+//    }
 
-    public void update(User user) {
-        Assert.notNull(user, "user must not be null");
-        checkNotFoundWithId(repository.save(user), user.id());
-    }
+//    public User get(int id) {
+//        return checkNotFoundWithId(repository.get(id), id);
+//    }
 
-    public void delete(int id) {
-        checkNotFoundWithId(repository.delete(id), id);
-    }
-
-    public User get(int id) {
-        return checkNotFoundWithId(repository.get(id), id);
-    }
-
-    public List<User> getAll() {
-        return repository.getAll();
-    }
+//    public List<User> getAll() {
+//        return repository.getAll();
+//    }
 
 
 

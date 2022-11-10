@@ -5,16 +5,16 @@ import com.rubincomputers.vote_lunch.model.User;
 
 import java.util.List;
 
-public interface RestaurantRepository {
+public interface RestaurantRepository extends BaseRepository<Restaurant>{
 
     // null if not found, when updated
-    Restaurant save(Restaurant restaurant);
-
-    // false if not found
-    boolean delete(int id);
-
-    // null if not found
-    Restaurant get(int id);
-
-    List<Restaurant> getAll();
+//    Restaurant save(Restaurant restaurant);
+//
+//    // false if not found
+//    boolean delete(int id);
+//
+//    // null if not found
+//    Restaurant get(int id);
+//
+//    List<Restaurant> getAll();
 }
