@@ -22,4 +22,13 @@ public class DataJpaRestaurantRepository extends AbstractDataJpaBaseRepository<C
     public boolean delete(int id) {
         return crudRepository.delete(id) !=0;
     }
+
+    @Override
+    public List<Restaurant> getAll() {
+        return crudRepository.findAll(SORT_NAME);
+    }
+
+    public List<Restaurant> getByDateWithDishes() {
+        return crudRepository.getByDateWithDishes();
+    }
 }

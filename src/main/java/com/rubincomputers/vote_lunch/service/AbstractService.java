@@ -17,14 +17,14 @@ public abstract class AbstractService<ENTITY_REPOSITORY extends BaseRepository<E
         this.repository = repository;
     }
 
-    public ENTITY create(ENTITY user) {
-        Assert.notNull(user, "user must not be null");
-        return repository.save(user);
+    public ENTITY create(ENTITY entity) {
+        Assert.notNull(entity, "entity must not be null");
+        return repository.save(entity);
     }
 
-    public void update(ENTITY user) {
-        Assert.notNull(user, "user must not be null");
-        checkNotFoundWithId(repository.save(user), user.id());
+    public void update(ENTITY entity) {
+        Assert.notNull(entity, "user must not be null");
+        checkNotFoundWithId(repository.save(entity), entity.id());
     }
 
     public void delete(int id) {

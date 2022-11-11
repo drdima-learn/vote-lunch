@@ -7,4 +7,6 @@ import com.rubincomputers.vote_lunch.model.User;
 import java.util.List;
 
 public interface RestaurantRepository extends BaseRepository<Restaurant>{
+
+    List<Restaurant> getByDateWithDishes();
 }

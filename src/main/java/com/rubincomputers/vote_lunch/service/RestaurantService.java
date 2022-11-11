@@ -16,4 +16,8 @@ public class RestaurantService extends AbstractService<RestaurantRepository, Res
         super(repository);
     }
 
+    public List<Restaurant> getByDateWithDishes() {
+        return repository.getByDateWithDishes();
+    }
+
 }

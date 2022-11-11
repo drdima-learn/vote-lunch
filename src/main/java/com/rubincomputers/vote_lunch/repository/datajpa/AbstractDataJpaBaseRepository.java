@@ -7,7 +7,6 @@ import java.util.List;
 
 public abstract class AbstractDataJpaBaseRepository<CRUD_REPOSITORY extends JpaRepository<ENTITY, Integer>, ENTITY>  {
 
-
     protected CRUD_REPOSITORY crudRepository;
 
     public AbstractDataJpaBaseRepository(CRUD_REPOSITORY crudRepository) {
@@ -25,6 +24,4 @@ public abstract class AbstractDataJpaBaseRepository<CRUD_REPOSITORY extends JpaR
     public List<ENTITY> getAll() {
         return crudRepository.findAll();
     }
-
-
 }
