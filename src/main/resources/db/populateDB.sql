@@ -24,9 +24,9 @@ VALUES ('Restaurant 1'),
 
 INSERT INTO dishes (name, price, created, restaurant_id)
 VALUES ('Dish 1 , Restaurant 1', 10.00, '2022-11-10 10:00:00', 100003),
-       ('Dish 2 , Restaurant 1', 20.00, '2022-11-10 10:10:00', 100003),
+       ('Dish 2 , Restaurant 1', 20.00, '2022-11-11 10:10:00', 100003),
        ('Dish 3 , Restaurant 1', 30.00, '2022-11-10 10:20:00', 100003),
        ('Dish 4 , Restaurant 2', 40.00, '2022-11-10 10:30:00', 100004),
-       ('Dish 5 , Restaurant 2', 30.00, '2022-11-10 10:40:00', 100004),
+       ('Dish 5 , Restaurant 2', 30.00, '2022-11-11 10:40:00', 100004),
        ('Dish 6 , Restaurant 3', 30.00, '2022-11-10 10:50:00', 100005);
 

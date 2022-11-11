@@ -7,6 +7,7 @@ import com.rubincomputers.vote_lunch.model.Restaurant;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.List;
 
 import static com.rubincomputers.vote_lunch.model.AbstractBaseEntity.START_SEQ;
 import static com.rubincomputers.vote_lunch.testdata.RestaurantTestData.*;
@@ -24,11 +25,12 @@ public class DishTestData {
     public static final int NOT_FOUND = 30;
 
     public static final Dish dish1 = new Dish(DISH1_ID, "Dish 1 , Restaurant 1", new BigDecimal("10.00"), LocalDateTime.of(2022, Month.NOVEMBER, 10, 10, 00), rest1);
-    public static final Dish dish2 = new Dish(DISH2_ID, "Dish 2 , Restaurant 1", new BigDecimal("20.00"), LocalDateTime.of(2022, Month.NOVEMBER, 10, 10, 10), rest1);
+    public static final Dish dish2 = new Dish(DISH2_ID, "Dish 2 , Restaurant 1", new BigDecimal("20.00"), LocalDateTime.of(2022, Month.NOVEMBER, 11, 10, 10), rest1);
     public static final Dish dish3 = new Dish(DISH3_ID, "Dish 3 , Restaurant 1", new BigDecimal("30.00"), LocalDateTime.of(2022, Month.NOVEMBER, 10, 10, 20), rest1);
     public static final Dish dish4 = new Dish(DISH4_ID, "Dish 4 , Restaurant 2", new BigDecimal("40.00"), LocalDateTime.of(2022, Month.NOVEMBER, 10, 10, 30), rest2);
-    public static final Dish dish5 = new Dish(DISH5_ID, "Dish 5 , Restaurant 2", new BigDecimal("30.00"), LocalDateTime.of(2022, Month.NOVEMBER, 10, 10, 40), rest2);
+    public static final Dish dish5 = new Dish(DISH5_ID, "Dish 5 , Restaurant 2", new BigDecimal("30.00"), LocalDateTime.of(2022, Month.NOVEMBER, 11, 10, 40), rest2);
     public static final Dish dish6 = new Dish(DISH6_ID, "Dish 6 , Restaurant 3", new BigDecimal("30.00"), LocalDateTime.of(2022, Month.NOVEMBER, 10, 10, 50), rest3);
+
 
 
     public static Dish getNew() {

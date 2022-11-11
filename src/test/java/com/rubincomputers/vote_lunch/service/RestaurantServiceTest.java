@@ -2,7 +2,7 @@ package com.rubincomputers.vote_lunch.service;
 
 import com.rubincomputers.vote_lunch.exception.NotFoundException;
 import com.rubincomputers.vote_lunch.model.Restaurant;
-import com.rubincomputers.vote_lunch.model.User;
+import com.rubincomputers.vote_lunch.testdata.DishTestData;
 import com.rubincomputers.vote_lunch.testdata.RestaurantTestData;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static com.rubincomputers.vote_lunch.testdata.RestaurantTestData.*;
-import static com.rubincomputers.vote_lunch.testdata.UserTestData.*;
 import static com.rubincomputers.vote_lunch.testdata.UserTestData.NOT_FOUND;
-import static com.rubincomputers.vote_lunch.testdata.UserTestData.userUser;
 import static org.junit.Assert.assertThrows;
 
 public class RestaurantServiceTest extends AbstractTest {
@@ -67,7 +65,7 @@ public class RestaurantServiceTest extends AbstractTest {
 
     @Test
     public void getByDateWithDishes() {
-        List<Restaurant> all = service.getByDateWithDishes();
-        RESTAURANT_MATCHER.assertMatch(all, rest1, rest2, rest3);
+        List<Restaurant> all = service.getAllByDateWithDishes(DishTestData.dish1.getCreated().toLocalDate());
+        RESTAURANT_MATCHER_WITH_DISHES.assertMatch(all, getRest1WithDishes2022_11_10(), getRest2WithDishes2022_11_10(), getRest3WithDishes2022_11_10());
     }
 }

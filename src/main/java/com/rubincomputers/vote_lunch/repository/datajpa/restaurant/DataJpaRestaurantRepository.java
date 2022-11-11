@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Repository
@@ -28,7 +31,11 @@ public class DataJpaRestaurantRepository extends AbstractDataJpaBaseRepository<C
         return crudRepository.findAll(SORT_NAME);
     }
 
-    public List<Restaurant> getByDateWithDishes() {
-        return crudRepository.getByDateWithDishes();
+    public List<Restaurant> getAllByDateWithDishes(LocalDate day) {
+        return crudRepository.getAllByCreatedBetweenStartAndEndWithDishes(
+                LocalDateTime.of(day, LocalTime.MIN),
+                LocalDateTime.of(day, LocalTime.MAX)
+        );
     }
+
 }

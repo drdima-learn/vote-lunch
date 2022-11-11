@@ -63,4 +63,13 @@ public class Dish extends AbstractNamedEntity{
         this.created = created;
     }
 
+    @Override
+    public String toString() {
+        return "Dish{" +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", created=" + created +
+                '}';
+    }
 }
