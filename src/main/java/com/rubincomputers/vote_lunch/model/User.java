@@ -9,20 +9,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
 
-@NamedQueries({
-        @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.name, u.email"),
-        @NamedQuery(name = User.BY_EMAIL, query = "SELECT u FROM User u WHERE u.email=:email"),
-        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
-        @NamedQuery(name = User.UPDATE, query = "" +
-                "UPDATE User u " +
-                "SET u.name=:name, " +
-                "u.email=:email, " +
-                "u.password=:password, " +
-                "u.enabled=:enabled, " +
-                "u.registered=:registered " +
-                //"u.roles=:roles " +
-                "WHERE u.id=:id")
-})
+//@NamedQueries({
+//        @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.name, u.email"),
+//        @NamedQuery(name = User.BY_EMAIL, query = "SELECT u FROM User u WHERE u.email=:email"),
+//        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
+//        @NamedQuery(name = User.UPDATE, query = "" +
+//                "UPDATE User u " +
+//                "SET u.name=:name, " +
+//                "u.email=:email, " +
+//                "u.password=:password, " +
+//                "u.enabled=:enabled, " +
+//                "u.registered=:registered " +
+//                //"u.roles=:roles " +
+//                "WHERE u.id=:id")
+//})
 @Entity
 @Table(name = "users")
 public class User extends AbstractNamedEntity {
@@ -60,21 +60,21 @@ public class User extends AbstractNamedEntity {
     public User() {
     }
 
-    public User(Integer id, String name, String email, String password, Role... roles ) {
+    public User(Integer id, String name, String email, String password, Role... roles) {
         this(id, name, email, password, true, new Date(), Arrays.asList(roles));
     }
 
     public User(Integer id, String name, String email, String password, boolean enabled, Date registered, Collection<Role> roles) {
-        this.id=id;
-        this.name=name;
-        this.email=email;
-        this.password=password;
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
         this.enabled = enabled;
         this.registered = registered;
         setRoles(roles);
     }
 
-    public User(User user){
+    public User(User user) {
         this(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.isEnabled(), user.getRegistered(), user.getRoles());
     }
 
@@ -116,7 +116,8 @@ public class User extends AbstractNamedEntity {
     }
 
     public void setRoles(Collection<Role> roles) {
-        this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);;
+        this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
+        ;
     }
 
     @Override

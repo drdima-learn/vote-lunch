@@ -1,9 +1,9 @@
 package com.rubincomputers.vote_lunch.repository.jpa;
 
-import com.rubincomputers.vote_lunch.UserTestData;
 import com.rubincomputers.vote_lunch.model.User;
 import com.rubincomputers.vote_lunch.repository.UserRepository;
 import junit.framework.TestCase;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static com.rubincomputers.vote_lunch.UserTestData.*;
+import static com.rubincomputers.vote_lunch.testdata.UserTestData.*;
 
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",
@@ -24,6 +24,7 @@ import static com.rubincomputers.vote_lunch.UserTestData.*;
 })
 @RunWith(SpringRunner.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+@Ignore
 public class JpaUserRepositoryTest extends TestCase {
 
     private static final Logger log = LoggerFactory.getLogger(JpaUserRepositoryTest.class);
