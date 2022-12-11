@@ -12,6 +12,6 @@
 
     <context:component-scan base-package="com.rubincomputers.**.service"/>
 
-    <context:component-scan base-package="com.rubincomputers.**.web"/>
+<!--    <context:component-scan base-package="com.rubincomputers.**.web"/>-->
 
 </beans>

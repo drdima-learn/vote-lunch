@@ -4,16 +4,18 @@ import com.rubincomputers.vote_lunch.exception.NotFoundException;
 import com.rubincomputers.vote_lunch.model.Restaurant;
 import com.rubincomputers.vote_lunch.testdata.DishTestData;
 import com.rubincomputers.vote_lunch.testdata.RestaurantTestData;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 import static com.rubincomputers.vote_lunch.testdata.RestaurantTestData.*;
 import static com.rubincomputers.vote_lunch.testdata.UserTestData.NOT_FOUND;
-import static org.junit.Assert.assertThrows;
 
-public class RestaurantServiceTest extends AbstractTest {
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class RestaurantServiceTest extends AbstractServiceTest {
 
     @Autowired
     private RestaurantService service;

@@ -2,21 +2,17 @@ package com.rubincomputers.vote_lunch.service;
 
 import com.rubincomputers.vote_lunch.exception.NotFoundException;
 import com.rubincomputers.vote_lunch.model.Dish;
-import com.rubincomputers.vote_lunch.model.Role;
-import com.rubincomputers.vote_lunch.model.User;
 import com.rubincomputers.vote_lunch.testdata.DishTestData;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 
-import java.time.LocalDate;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 
 import static com.rubincomputers.vote_lunch.testdata.DishTestData.*;
-import static com.rubincomputers.vote_lunch.testdata.UserTestData.*;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class DishServiceTest extends AbstractTest{
+public class DishServiceTest extends AbstractServiceTest {
 
     @Autowired
     private DishService service;
@@ -64,7 +60,7 @@ public class DishServiceTest extends AbstractTest{
     @Test
     public void getAll() {
         List<Dish> all = service.getAll((dish1.getCreated().toLocalDate()));
-        DISH_MATCHER.assertMatch(all, dish1, dish2, dish3, dish4, dish5, dish6);
+        DISH_MATCHER.assertMatch(all, dish1, dish3, dish4, dish6);
     }
 
 

@@ -3,16 +3,16 @@ package com.rubincomputers.vote_lunch.service;
 import com.rubincomputers.vote_lunch.exception.NotFoundException;
 import com.rubincomputers.vote_lunch.model.Role;
 import com.rubincomputers.vote_lunch.model.User;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 
 import static com.rubincomputers.vote_lunch.testdata.UserTestData.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class UserServiceTest extends AbstractTest{
+public class UserServiceTest extends AbstractServiceTest {
 
     @Autowired
     private UserService service;

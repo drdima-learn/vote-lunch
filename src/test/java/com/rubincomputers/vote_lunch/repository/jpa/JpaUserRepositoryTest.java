@@ -2,30 +2,29 @@ package com.rubincomputers.vote_lunch.repository.jpa;
 
 import com.rubincomputers.vote_lunch.model.User;
 import com.rubincomputers.vote_lunch.repository.UserRepository;
-import junit.framework.TestCase;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static com.rubincomputers.vote_lunch.testdata.UserTestData.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ContextConfiguration({
+@SpringJUnitWebConfig(locations = {
         "classpath:spring/spring-app.xml",
         "classpath:spring/spring-db.xml"
 })
-@RunWith(SpringRunner.class)
+@Transactional
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-@Ignore
-public class JpaUserRepositoryTest extends TestCase {
+//@Ignore
+public class JpaUserRepositoryTest {
 
     private static final Logger log = LoggerFactory.getLogger(JpaUserRepositoryTest.class);
 
@@ -45,31 +44,30 @@ public class JpaUserRepositoryTest extends TestCase {
     }
 
 
-
     @Test
-    public void getAll(){
+    public void getAll() {
         List<User> users = repository.getAll();
         log.info("users = {}", users);
         USER_MATCHER.assertMatch(users, userAdmin, userGuest, userUser);
     }
 
     @Test
-    public void getByEmail(){
+    public void getByEmail() {
         User user = repository.getByEmail(userUser.getEmail());
         log.info("user = {}", user);
         USER_MATCHER.assertMatch(user, userUser);
     }
 
     @Test
-    public void delete(){
-        boolean result =  repository.delete(USER_ID);
+    public void delete() {
+        boolean result = repository.delete(USER_ID);
         log.info("result = {}", result);
         assertTrue(result);
     }
 
     @Test
-    public void deleteNotFound(){
-        boolean result =  repository.delete(NOT_FOUND);
+    public void deleteNotFound() {
+        boolean result = repository.delete(NOT_FOUND);
         log.info("result = {}", result);
         assertFalse(result);
     }
@@ -77,7 +75,7 @@ public class JpaUserRepositoryTest extends TestCase {
     @Test
     public void save() {
         User created = repository.save(getNew());
-        User newUser =getNew();
+        User newUser = getNew();
         newUser.setId(created.getId());
         USER_MATCHER.assertMatch(created, newUser);
 

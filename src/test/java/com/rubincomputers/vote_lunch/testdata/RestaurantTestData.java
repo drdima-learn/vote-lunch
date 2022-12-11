@@ -15,8 +15,8 @@ import static com.rubincomputers.vote_lunch.testdata.DishTestData.*;
 
 public class RestaurantTestData {
 
-    public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER = MatcherFactory.usingIgnoringFieldsComparator("dishes");
-    public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER_WITH_DISHES = MatcherFactory.usingIgnoringFieldsComparator("dishes.restaurant");
+    public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Restaurant.class , "dishes");
+    public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER_WITH_DISHES = MatcherFactory.usingIgnoringFieldsComparator(Restaurant.class, "dishes.restaurant");
 
     public static final int REST1_ID = START_SEQ + 3;
     public static final int REST2_ID = START_SEQ + 4;

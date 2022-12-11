@@ -1,15 +1,12 @@
 package com.rubincomputers.vote_lunch.model;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "dishes")
-public class Dish extends AbstractNamedEntity{
+public class Dish extends AbstractNamedEntity {
     //id
     //name
 
@@ -22,7 +19,6 @@ public class Dish extends AbstractNamedEntity{
     private Restaurant restaurant;
 
 
-
     public Dish(Integer id, String name, BigDecimal price, LocalDateTime created, Restaurant restaurant) {
         super(id, name);
         this.price = price;
@@ -30,7 +26,7 @@ public class Dish extends AbstractNamedEntity{
         this.restaurant = restaurant;
     }
 
-    public Dish(Dish d){
+    public Dish(Dish d) {
         this(d.id, d.name, d.price, d.created, d.restaurant);
     }
 
