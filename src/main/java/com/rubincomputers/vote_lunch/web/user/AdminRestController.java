@@ -28,6 +28,11 @@ public class AdminRestController extends AbstractUserController{
         return super.get(id);
     }
 
+    @GetMapping("/by-email")
+    public User getByMail(@RequestParam String email) {
+        return service.getByEmail(email);
+    }
+
     @GetMapping
     public List<User> getAll() {
         return service.getAll();
@@ -50,9 +55,11 @@ public class AdminRestController extends AbstractUserController{
         super.update(user, id);
     }
 
-    @GetMapping("/by-email")
-    public User getByMail(@RequestParam String email) {
-        return service.getByEmail(email);
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        service.delete(id);
     }
 
 }
