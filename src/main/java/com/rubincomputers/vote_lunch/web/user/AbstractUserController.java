@@ -2,14 +2,15 @@ package com.rubincomputers.vote_lunch.web.user;
 
 import com.rubincomputers.vote_lunch.model.User;
 import com.rubincomputers.vote_lunch.service.UserService;
+import com.rubincomputers.vote_lunch.web.AbstractController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.rubincomputers.vote_lunch.util.ValidationUtil.assureIdConsistent;
 
-public abstract class AbstractUserController {
-    protected final Logger log = LoggerFactory.getLogger(getClass());
+public abstract class AbstractUserController extends AbstractController {
+
 
     @Autowired
     protected UserService service;

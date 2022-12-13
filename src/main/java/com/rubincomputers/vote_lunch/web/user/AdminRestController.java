@@ -39,6 +39,9 @@ public class AdminRestController extends AbstractUserController{
     }
 
 
+
+
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createWithLocation(@RequestBody User user) {
         User created = service.create(user);
