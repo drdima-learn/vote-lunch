@@ -53,37 +53,9 @@ class RestaurantRestControllerTest extends AbstractControllerTest {
                 .andExpect(RESTAURANT_MATCHER_WITH_DISHES.contentJson(rest1, rest2, rest3));
     }
 
-    @Test
-    void delete() throws Exception {
-        perform(MockMvcRequestBuilders.delete(REST_URL + REST1_ID))
-                .andDo(print())
-                .andExpect(status().isNoContent());
-        assertThrows(NotFoundException.class, () -> service.get(REST1_ID));
-    }
 
-    @Test
-    void createWithLocation() throws Exception {
-        Restaurant newRestaurant = RestaurantTestData.getNew();
-        ResultActions action = perform(MockMvcRequestBuilders.post(RestaurantRestController.REST_URL)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(newRestaurant)))
-                .andExpect(status().isCreated());
 
-        Restaurant created = RESTAURANT_MATCHER.readFromJson(action);
-        int newId = created.id();
-        newRestaurant.setId(newId);
-        RESTAURANT_MATCHER.assertMatch(created, newRestaurant);
-        RESTAURANT_MATCHER.assertMatch(service.get(newId), newRestaurant);
-    }
 
-    @Test
-    void update() throws Exception {
-        Restaurant updated = RestaurantTestData.getUpdated();
-        perform(MockMvcRequestBuilders.put(REST_URL + REST1_ID)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(updated)))
-                .andExpect(status().isNoContent());
 
-        RESTAURANT_MATCHER.assertMatch(service.get(REST1_ID), updated);
-    }
+
 }

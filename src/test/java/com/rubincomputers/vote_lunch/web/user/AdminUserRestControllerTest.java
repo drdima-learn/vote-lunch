@@ -6,6 +6,7 @@ import com.rubincomputers.vote_lunch.service.UserService;
 import com.rubincomputers.vote_lunch.testdata.UserTestData;
 import com.rubincomputers.vote_lunch.web.AbstractControllerTest;
 import com.rubincomputers.vote_lunch.web.json.JsonUtil;
+import com.rubincomputers.vote_lunch.web.user.AdminUserRestController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,9 +19,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-class AdminRestControllerTest extends AbstractControllerTest {
+class AdminUserRestControllerTest extends AbstractControllerTest {
 
-    private static final String REST_URL = AdminRestController.REST_URL + '/';
+    private static final String REST_URL = AdminUserRestController.REST_URL + '/';
 
     @Autowired
     private UserService userService;
