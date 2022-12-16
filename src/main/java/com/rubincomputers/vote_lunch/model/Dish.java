@@ -17,7 +17,8 @@ public class Dish extends AbstractNamedEntity {
 
     private BigDecimal price;
 
-    private LocalDateTime created;
+    @Column(name = "created", nullable = false, columnDefinition = "timestamp default now()", updatable = false)
+    private LocalDateTime created = LocalDateTime.now();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
@@ -69,7 +70,7 @@ public class Dish extends AbstractNamedEntity {
     @Override
     public String toString() {
         return "Dish{" +
-                ", id=" + id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", created=" + created +

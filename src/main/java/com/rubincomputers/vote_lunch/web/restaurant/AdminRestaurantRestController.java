@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 import static com.rubincomputers.vote_lunch.util.ValidationUtil.assureIdConsistent;
+import static com.rubincomputers.vote_lunch.util.ValidationUtil.checkNew;
 
 @RestController
 @RequestMapping(value = AdminRestaurantRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -20,7 +21,7 @@ public class AdminRestaurantRestController extends AbstractController {
     static final String REST_URL = "/rest/admin/restaurants";
 
     @Autowired
-    protected RestaurantService service;
+    private RestaurantService service;
 
     //admin only
     @DeleteMapping("/{id}")
@@ -32,6 +33,8 @@ public class AdminRestaurantRestController extends AbstractController {
     // admin only
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant restaurant) {
+        log.info("create {}", restaurant);
+        checkNew(restaurant);
         Restaurant created = service.create(restaurant);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")

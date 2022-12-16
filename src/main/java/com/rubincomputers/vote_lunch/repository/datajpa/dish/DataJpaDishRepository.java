@@ -9,6 +9,7 @@ import com.rubincomputers.vote_lunch.repository.datajpa.restaurant.CrudRestauran
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,22 +19,40 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Repository
-public class DataJpaDishRepository extends AbstractDataJpaBaseRepository<CrudDishRepository, Dish> implements DishRepository {
+public class DataJpaDishRepository implements DishRepository {
 
-    public DataJpaDishRepository(CrudDishRepository crudDishRepository) {
-        super(crudDishRepository);
-    }
+    @Autowired
+    private CrudDishRepository crudDishRepository;
 
-    @Override
-    public boolean delete(int id) {
-        return crudRepository.delete(id) !=0;
-    }
+    @Autowired
+    private CrudRestaurantRepository crudRestaurantRepository;
+
+
 
     @Override
     public List<Dish> getAll(LocalDate day) {
-        return crudRepository.findByCreatedBetween(
+        return crudDishRepository.findByCreatedBetween(
                 LocalDateTime.of(day, LocalTime.MIN),
                 LocalDateTime.of(day, LocalTime.MAX)
         );
     }
+
+    @Override
+    @Transactional
+    public Dish save(Dish dish, int restaurantId) {
+        if (!dish.isNew() && get(dish.id(), restaurantId) == null) {
+            return null;
+        }
+        dish.setRestaurant(crudRestaurantRepository.getReferenceById(restaurantId));
+        return crudDishRepository.save(dish);
+    }
+
+    @Override
+    public Dish get(int id, int restaurantId) {
+        return crudDishRepository.findById(id)
+                .filter(restaurant -> restaurant.getRestaurant().getId() == restaurantId)
+                .orElse(null);
+    }
+
+
 }

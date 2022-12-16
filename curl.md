@@ -67,6 +67,19 @@
 
 ## dish
 
-    #get
-    curl http://localhost:8080/vote/rest/dishes/100006 | json_pp
+    ### dish admin
+        #get
+        curl http://localhost:8080/vote/rest/admin/restaurants/100003/dishes/100006 | json_pp
+
+        #create
+        curl http://localhost:8080/vote/rest/admin/restaurants/100003/dishes \
+        -H 'Content-Type: application/json' \
+        -d '{"name": "new Dish, Restaurant 1", "price": "20"}' | json_pp
+
+
+        #update
+        curl -X PUT http://localhost:8080/vote/rest/admin/restaurants/100003/dishes/100006 \
+        -H 'Content-Type: application/json' \
+        -d '{"name": "Updated Dish, Restaurant 1", "price": "99"}' | json_pp
+    
     
