@@ -18,20 +18,27 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class MatcherFactory {
     public static <T> Matcher<T> usingIgnoringFieldsComparator(Class<T> clazz, String... fieldsToIgnore) {
-        return new Matcher<>(clazz, fieldsToIgnore);
+        return new Matcher<>(clazz, fieldsToIgnore, new String[]{""});
+    }
+
+    public static <T> Matcher<T> usingOnlyFieldsComparator(Class<T> clazz, String... fieldsToCompare) {
+        return new Matcher<>(clazz,new String[]{""}, fieldsToCompare);
     }
 
     public static class Matcher<T> {
         private final Class<T> clazz;
         private final String[] fieldsToIgnore;
+        private final String[] fieldsToCompare;
 
-        private Matcher(Class<T> clazz, String... fieldsToIgnore) {
+        private Matcher(Class<T> clazz, String[] fieldsToIgnore, String[] fieldsToCompare) {
             this.clazz = clazz;
             this.fieldsToIgnore = fieldsToIgnore;
+            this.fieldsToCompare = fieldsToCompare;
         }
 
         public void assertMatch(T actual, T expected) {
-            assertThat(actual).usingRecursiveComparison().ignoringFields(fieldsToIgnore).isEqualTo(expected);
+            //assertThat(actual).usingRecursiveComparison().ignoringFields(fieldsToIgnore).isEqualTo(expected);
+            assertThat(actual).usingRecursiveComparison().ignoringFields(fieldsToIgnore).comparingOnlyFields(fieldsToCompare).isEqualTo(expected);
         }
 
         @SafeVarargs

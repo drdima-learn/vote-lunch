@@ -18,7 +18,7 @@ public abstract class AbstractService<ENTITY_REPOSITORY extends BaseRepository<E
     }
 
     public ENTITY create(ENTITY entity) {
-        Assert.notNull(entity, "entity must not be null");
+        Assert.notNull(entity, "entity " + entity.getClass().getSimpleName() + " must not be null");
         return repository.save(entity);
     }
 

@@ -19,7 +19,7 @@ public class DishService {
 
 
     public Dish create(Dish dish, int restaurantId) {
-        Assert.notNull(dish, "meal must not be null");
+        Assert.notNull(dish, "dish must not be null");
         return repository.save(dish, restaurantId);
     }
 

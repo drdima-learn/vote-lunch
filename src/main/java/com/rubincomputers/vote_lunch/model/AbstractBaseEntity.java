@@ -40,4 +40,8 @@ public abstract class AbstractBaseEntity {
     public boolean isNew() {
         return this.id == null;
     }
+
+    protected String isNullStr(Object o){
+        return String.valueOf(o==null);
+    }
 }
